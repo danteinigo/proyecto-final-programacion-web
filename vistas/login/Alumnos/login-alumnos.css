@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap');
+
+body {
+    font-family: "Radio Canada Big", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 484;
+    font-style: normal;
+
+    background-color: #f8fef3;
+    margin: 0;
+    padding: 0;
+}
+
+/*Header - Menu / Nav*/
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 70px;
+    margin: 20px;
+}
+
+.navbar {
+    text-align: right;
+    padding-right: 30px;
+}
+
+.navbar ul {
+    list-style: none;
+}
+
+.navbar ul li {
+    display: inline-block;
+}
+
+.navbar li a {
+    color: #000;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#alumno {
+    background-color: #fa8b4b;
+    border-radius: 5px;
+    color: white;
+}
+
+.navbar li a:hover {
+    background-color: #f9ab7d;
+    color: black;
+    border-radius: 5px;
+}
+
+.navbar li a:active {
+    transition-duration: 0.3s;
+    background-color: #fa8b4b;
+    color: black;
+}
+
+/*Header - Content*/
+.container {
+    display: flex;
+}
+
+.header-img img {
+    /*max-width: 50%;  Ajusta el tamaño máximo de la imagen */
+    /*height: auto;  Para mantener la proporción de la imagen */
+    height: 600px;
+    padding-left: 100px;
+    float: left;
+}
+
+.form {
+    margin: 40px auto;
+    width: 25%;
+}
+
+form h1 {
+    margin-top: 0;
+    font-size: 40px;
+    text-align: center;
+}
+
+form h2 {
+    margin-bottom: 10px;
+}
+
+
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    background-color: #f9ab7d;
+    color: #f8fef3;
+    border: none;
+    margin-top: 20px;    
+    border-radius: 5px;
+}
+
+form input[type="submit"]:hover {
+    transition-duration: 0.3s;
+    background-color: #fa8b4b;
+}
+
+
+.form a {
+    display: block;
+    /* Para ocupar el ancho completo del contenedor */
+    text-align: center;
+    /* Centra el texto */
+    text-decoration: none;
+    /* Elimina el subrayado */
+    font-weight: bold;
+    /* Aplica negrita */
+    color: #000000a9;
+}
+
+/*Footer*/
+
+footer {
+    position: fixed;
+    /* o absolute dependiendo del caso */
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    /* Opcional, para que ocupe todo el ancho */
+    color: #00000070;
+    padding-left: 40px;
+}

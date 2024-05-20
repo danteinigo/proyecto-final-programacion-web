@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap');
+
+body {
+    font-family: "Radio Canada Big", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 484;
+    font-style: normal;
+
+    background-color: #fcffe6;
+    margin: 0;
+    padding: 0;
+}
+
+/*Header - Menu / Nav*/
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 70px;
+    margin: 20px;
+}
+
+.navbar {
+    text-align: right;
+    padding-right: 30px;
+}
+
+.navbar ul {
+    list-style: none;
+}
+
+.navbar ul li {
+    display: inline-block;
+}
+
+.navbar li a {
+    color: #000;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.navbar li a:hover {
+    background-color: #f9ab7d;
+    color: black;
+}
+
+.navbar li a:active {
+    transition-duration: 0.3s;
+    background-color: #fa8b4b;
+    color: black;
+}
+
+/*Header - Content*/
+
+/* Estilos para el layout del encabezado */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+/* Estilos adicionales si es necesario */
+.header-txt {
+    flex: 1; /* Estira para ocupar todo el espacio restante */
+    margin: 0 0 0 40px;
+}
+
+.header-txt h1 {
+    font-size: 70px;
+    width: auto;
+}
+
+.header-txt p {
+    font-size: 30px;
+    width: auto;
+}
+
+.header-img {
+    margin-right: 40px;
+}
+
+.header-img img {
+    /*max-width: 50%;  Ajusta el tamaño máximo de la imagen */
+    /*height: auto;  Para mantener la proporción de la imagen */
+    height: 600px;
+    float: right;
+}
+
+footer{
+    position: fixed; /* o absolute dependiendo del caso */
+    bottom: 40px;
+    left: 0;
+    width: 100%; /* Opcional, para que ocupe todo el ancho */
+    color: #00000070;
+    padding-left: 40px;
+}
