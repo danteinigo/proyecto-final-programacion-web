@@ -1,11 +1,115 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Docentes</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            padding-top: 20px;
+            transition: width 0.3s ease;
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #sidebar ul li {
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        #sidebar ul li:hover {
+            background-color: #555;
+        }
+
+        #content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #toggle-sidebar {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        #toggle-sidebar i {
+            font-size: 20px;
+        }
+
+        #toggle-sidebar span {
+            display: none;
+            margin-left: 10px;
+        }
+
+        #toggle-sidebar.active span {
+            display: inline;
+        }
+    </style>
 </head>
 <body>
-    
+    <button id="toggle-sidebar">
+        <i class="fas fa-bars"></i>
+        <span>Toggle Sidebar</span>
+    </button>
+    <div id="sidebar">
+        <ul>
+            <li><i class="fas fa-home"></i> Home</li>
+            <li><i class="fas fa-users"></i> Users</li>
+            <li><i class="fas fa-cog"></i> Settings</li>
+            <li><i class="fas fa-info-circle"></i> About</li>
+        </ul>
+    </div>
+    <div id="content">
+        <h1>Welcome to the Dashboard</h1>
+        <p>This is a simple dashboard with a left sidebar menu.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        document.getElementById('toggle-sidebar').addEventListener('click', function() {
+            var sidebar = document.getElementById('sidebar');
+            var content = document.getElementById('content');
+            if (sidebar.style.width === '250px') {
+                sidebar.style.width = '80px';
+                content.style.marginLeft = '80px';
+                this.classList.remove('active');
+            } else {
+                sidebar.style.width = '250px';
+                content.style.marginLeft = '250px';
+                this.classList.add('active');
+            }
+        });
+    </script>
 </body>
 </html>
