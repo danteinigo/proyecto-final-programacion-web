@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,8 @@
             width: 250px;
             height: 100%;
             background-color: #333;
-            padding-top: 20px;
+            padding-top: 60px;
+            /* Espacio adicional para el botón */
             transition: width 0.3s ease;
         }
 
@@ -52,7 +54,7 @@
         }
 
         #toggle-sidebar {
-            position: fixed;
+            position: absolute;
             left: 10px;
             top: 10px;
             background-color: #333;
@@ -77,12 +79,13 @@
         }
     </style>
 </head>
+
 <body>
-    <button id="toggle-sidebar">
-        <i class="fas fa-bars"></i>
-        <span>Toggle Sidebar</span>
-    </button>
     <div id="sidebar">
+        <button id="toggle-sidebar">
+            <i class="fas fa-bars"></i>
+            <span>Toggle Sidebar</span>
+        </button>
         <ul>
             <li><i class="fas fa-home"></i> Home</li>
             <li><i class="fas fa-users"></i> Users</li>
@@ -97,7 +100,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script>
-        document.getElementById('toggle-sidebar').addEventListener('click', function() {
+        document.getElementById('toggle-sidebar').addEventListener('click', function (e) {
+            e.stopPropagation(); // Evitar que el evento se propague al hacer clic en el botón
             var sidebar = document.getElementById('sidebar');
             var content = document.getElementById('content');
             if (sidebar.style.width === '250px') {
@@ -110,6 +114,18 @@
                 this.classList.add('active');
             }
         });
+
+        // Cerrar la barra lateral si se hace clic en otro lugar de la página
+        document.addEventListener('click', function (e) {
+            var sidebar = document.getElementById('sidebar');
+            var toggleSidebar = document.getElementById('toggle-sidebar');
+            if (e.target !== sidebar && e.target !== toggleSidebar) {
+                sidebar.style.width = '80px';
+                document.getElementById('content').style.marginLeft = '80px';
+                document.getElementById('toggle-sidebar').classList.remove('active');
+            }
+        });
     </script>
 </body>
+
 </html>
