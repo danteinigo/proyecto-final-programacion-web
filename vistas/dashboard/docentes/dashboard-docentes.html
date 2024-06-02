@@ -4,57 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Universidad Nacional Federico Villarreal | Docentes</title>
+    <link rel="shortcut icon" href="../../../img/universidad/UNFV_ico.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="dashboard-docentes.css">
 </head>
 
 <body>
-    <div id="sidebar">
-        <button id="toggle-sidebar">
-            <i class="fas fa-bars"></i>
-            <span>Sidebar</span>
-        </button>
+    <div class="sidevar">
+        <div class="top">
+            <div class="logo">
+                <i class="bx bxl-codepen"></i>
+                <span></span>
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+        <div class="user">
+            <i class='bx bx-user-circle' id="user-img"></i>
+            <div>
+                <p class="bold">Dante Iñigo</p>
+            </div>
+        </div>
         <ul>
-            <li><i class="fas fa-home"></i> Inicio</li>
-            <li><i class="fas fa-users"></i> Usuario</li>
-            <li><i class="fas fa-cog"></i> Ajustes</li>
-            <li><i class="fas fa-info-circle"></i> Información</li>
+            <li>
+                <a href="#">
+                    <i class="bx bxs-grid-alt"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-book'></i>
+                    <span class="nav-item">Cursos</span>
+                </a>
+                <span class="tooltip">Cursos</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog'></i>
+                    <span class="nav-item">Ajustes</span>
+                </a>
+                <span class="tooltip">Ajustes</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-log-out"></i>
+                    <span class="nav-item">Logout</span>
+                </a>
+                <span class="tooltip">Logout</span>
+            </li>
+
         </ul>
     </div>
-    <div id="content">
-        <h1>Registro de Notas</h1>
-        <p>**************************************************************</p>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>Panel Principal</h1>
+        </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-    <script>
-        document.getElementById('toggle-sidebar').addEventListener('click', function (e) {
-            e.stopPropagation(); // Evitar que el evento se propague al hacer clic en el botón
-            var sidebar = document.getElementById('sidebar');
-            var content = document.getElementById('content');
-            if (sidebar.style.width === '250px') {
-                sidebar.style.width = '80px';
-                content.style.marginLeft = '80px';
-                this.classList.remove('active');
-            } else {
-                sidebar.style.width = '250px';
-                content.style.marginLeft = '250px';
-                this.classList.add('active');
-            }
-        });
-
-        // Cerrar la barra lateral si se hace clic en otro lugar de la página
-        document.addEventListener('click', function (e) {
-            var sidebar = document.getElementById('sidebar');
-            var toggleSidebar = document.getElementById('toggle-sidebar');
-            if (e.target !== sidebar && e.target !== toggleSidebar) {
-                sidebar.style.width = '80px';
-                document.getElementById('content').style.marginLeft = '80px';
-                document.getElementById('toggle-sidebar').classList.remove('active');
-            }
-        });
-    </script>
 </body>
+
+<script>
+    let btn = document.querySelector('#btn');
+    let sidevar = document.querySelector('.sidevar');
+
+    btn.onclick = function(){
+        sidevar.classList.toggle('active');
+    }
+</script>
 
 </html>
