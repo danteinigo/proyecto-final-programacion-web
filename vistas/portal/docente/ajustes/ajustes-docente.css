@@ -71,6 +71,7 @@
     opacity: 1;
 }
 
+
 .top .logo i {
     font-size: 2rem;
     margin-right: 5px;
@@ -162,13 +163,13 @@
     display: none;
 }
 
-.sidevar ul li a .curso,
-.sidevar ul li a .curso i {
+.sidevar ul li a .ajustes,
+.sidevar ul li a .ajustes i {
     background-color: white;
 }
 
-.sidevar.active ul li .curso,
-.sidevar.active ul li .curso i {
+.sidevar.active ul li .ajustes,
+.sidevar.active ul li .ajustes i {
     background-color: white;
 }
 
