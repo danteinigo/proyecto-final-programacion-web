@@ -68,20 +68,27 @@
                 <div class="curso">
                     <label for="curso">Curso</label>
                     <select id="curso" name="curso">
-                        <option value="curso1"></option>
-                        <option value="curso2">Algoritmos y estructuras de datos</option>
-                        <option value="curso2">Arquitectura de computadoras</option>
-                        <option value="curso2">Taller de programación web</option>
+                        <option value="curso0"></option>
+                        <option value="curso1">INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE</option>
+                        <option value="curso2">PROGRAMACIÓN ORIENTADA A OBJETOS</option>
+                        <option value="curso3">DESARROLLO WEB</option>
+                        <option value="curso4">INGENIERÍA DE SOFTWARE EMPRESARIAL</option>
+                        <option value="curso5">INGENIERÍA DE REQUISITOS</option>
+                        <option value="curso6">PRUEBAS DE SOFTWARE</option>
                         <!-- Agrega más opciones según necesites -->
                     </select>
                 </div>
+                <!-- AQUI DEBO AGREGAR SOLO LA INICIALIZACIÓN, EN JS COLOCO LAS SECCIONES -->
                 <div class="seccion">
                     <label for="seccion">Sección</label>
                     <select id="seccion" name="seccion">
-                        <option value="seccion1"></option>
-                        <option value="seccion2">ZUIQW1</option>
-                        <option value="seccion2">CX2002</option>
-                        <option value="seccion2">PRW829</option>
+                        <option value="seccion0"></option>
+                        <option value="seccion1">I12345</option>
+                        <option value="seccion2">P54321</option>
+                        <option value="seccion3">D98765</option>
+                        <option value="seccion4">E24680</option>
+                        <option value="seccion5">R13579</option>
+                        <option value="seccion6">S80246</option>
                         <!-- Agrega más opciones según necesites -->
                     </select>
                 </div>
@@ -125,6 +132,7 @@
         }
     });
 
+    //Función para mostrar curso y sección
     document.addEventListener('DOMContentLoaded', function () {
         var cursoSelect = document.getElementById('curso');
         var seccionSelect = document.getElementById('seccion');
@@ -142,6 +150,50 @@
         // Actualizar la selección inicial
         actualizarSeleccion();
     });
+
+    //Función para mostrar cursos
+    document.getElementById('curso').addEventListener('change', function() {
+            var curso = this.value;
+            var seccionSelect = document.getElementById('seccion');
+
+            // Limpiar las opciones actuales
+            seccionSelect.innerHTML = '';
+
+            // Mostrar las secciones correspondientes al curso seleccionado
+            switch(curso) {
+                case 'curso1':
+                    seccionSelect.add(new Option("I12345", "seccion1"));
+                    seccionSelect.add(new Option("I54321", "seccion2"));
+                    seccionSelect.add(new Option("I98765", "seccion3"));
+                    break;
+                case 'curso2':
+                    seccionSelect.add(new Option("P12345", "seccion1"));
+                    seccionSelect.add(new Option("P54321", "seccion2"));
+                    break;
+                case 'curso3':
+                    seccionSelect.add(new Option("D98765", "seccion1"));
+                    seccionSelect.add(new Option("D24680", "seccion2"));
+                    break;
+                case 'curso4':
+                    seccionSelect.add(new Option("E12345", "seccion1"));
+                    seccionSelect.add(new Option("E80246", "seccion2"));
+                    break;
+                case 'curso5':
+                    seccionSelect.add(new Option("R13579", "seccion1"));
+                    break;
+                case 'curso6':
+                    seccionSelect.add(new Option("S80246", "seccion1"));
+                    seccionSelect.add(new Option("S35791", "seccion2"));
+                    break;
+                // Agrega más casos según necesites
+                default:
+                    // Si no se selecciona ningún curso, muestra una opción vacía
+                    seccionSelect.add(new Option("", ""));
+                    break;
+            }
+        });
+
+
 </script>
 
 </html>
