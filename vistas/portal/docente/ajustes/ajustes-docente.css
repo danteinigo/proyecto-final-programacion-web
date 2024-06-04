@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -24,7 +24,7 @@
     transition: all 0.5s ease;
 }
 
-.sidevar.active ~ .main-content{
+.sidevar.active~.main-content {
     left: 250px;
     width: calc(100% - 250px);
 }
@@ -42,7 +42,8 @@
     line-height: 50px;
     transform: translate(-50%);
     cursor: pointer;
-    font-size: 1.5rem; /* Aumenta el tamaño de los íconos */
+    font-size: 1.5rem;
+    /* Aumenta el tamaño de los íconos */
 }
 
 .sidevar.active #btn {
@@ -129,7 +130,8 @@
     height: 50px;
     border-radius: 12px;
     line-height: 50px;
-    font-size: 1.5rem; /* Aumenta el tamaño de los íconos */
+    font-size: 1.5rem;
+    /* Aumenta el tamaño de los íconos */
 }
 
 .sidevar .nav-item {
@@ -155,9 +157,9 @@
     transition: opacity 0.3s ease;
 }
 
-.sidevar ul li:hover .tooltip {
+/* .sidevar ul li:hover .tooltip {
     opacity: 1;
-}
+} */
 
 .sidevar.active ul li .tooltip {
     display: none;
@@ -185,3 +187,6 @@
     padding: 1rem;
 }
 
+.main-content .container h1 {
+    margin-left: 40px;
+}

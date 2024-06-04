@@ -40,7 +40,7 @@
                     <span class="nav-item">Cursos</span>
                 </a>
                 <span class="tooltip">Cursos</span>
-            </li>            
+            </li>
             <li>
                 <a href="../ajustes/ajustes-docente.html">
                     <i class='bx bx-cog'></i>
@@ -61,8 +61,48 @@
 
     <div class="main-content">
         <div class="container">
-            <h1>Cursos</h1>
+            <h1>CURSOS</h1>
         </div>
+        <div class="formulario">
+            <form id="cursoForm">
+                <div class="curso">
+                    <label for="curso">Curso</label>
+                    <select id="curso" name="curso">
+                        <option value="curso1"></option>
+                        <option value="curso2">Algoritmos y estructuras de datos</option>
+                        <option value="curso2">Arquitectura de computadoras</option>
+                        <option value="curso2">Taller de programación web</option>
+                        <!-- Agrega más opciones según necesites -->
+                    </select>
+                </div>
+                <div class="seccion">
+                    <label for="seccion">Sección</label>
+                    <select id="seccion" name="seccion">
+                        <option value="seccion1"></option>
+                        <option value="seccion2">ZUIQW1</option>
+                        <option value="seccion2">CX2002</option>
+                        <option value="seccion2">PRW829</option>
+                        <!-- Agrega más opciones según necesites -->
+                    </select>
+                </div>
+            </form>
+
+            <div id="seleccion"></div>
+
+            <div class="footer">
+                <div class="notas">
+                    <button type="button">REGISTRO DE NOTAS</button>
+                </div>
+                <div class="asistencia">
+                    <button type="button">ASISTENCIA</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="imagen">
+            <img src="../../../../img/login/Docentes.jpg" alt="">
+        </div> -->
+        
     </div>
 </body>
 
@@ -83,6 +123,24 @@
         if (!isClickInsideSidebar && !isClickInsideButton) {
             sidevar.classList.remove('active');
         }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var cursoSelect = document.getElementById('curso');
+        var seccionSelect = document.getElementById('seccion');
+        var seleccionDiv = document.getElementById('seleccion');
+
+        function actualizarSeleccion() {
+            var cursoSeleccionado = cursoSelect.options[cursoSelect.selectedIndex].text;
+            var seccionSeleccionada = seccionSelect.options[seccionSelect.selectedIndex].text;
+            seleccionDiv.textContent = cursoSeleccionado + ' - ' + seccionSeleccionada;
+        }
+
+        cursoSelect.addEventListener('change', actualizarSeleccion);
+        seccionSelect.addEventListener('change', actualizarSeleccion);
+
+        // Actualizar la selección inicial
+        actualizarSeleccion();
     });
 </script>
 

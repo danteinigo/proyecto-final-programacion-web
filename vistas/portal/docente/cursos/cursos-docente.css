@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -24,7 +24,7 @@
     transition: all 0.5s ease;
 }
 
-.sidevar.active ~ .main-content{
+.sidevar.active~.main-content {
     left: 250px;
     width: calc(100% - 250px);
 }
@@ -42,7 +42,8 @@
     line-height: 50px;
     transform: translate(-50%);
     cursor: pointer;
-    font-size: 1.5rem; /* Aumenta el tamaño de los íconos */
+    font-size: 1.5rem;
+    /* Aumenta el tamaño de los íconos */
 }
 
 .sidevar.active #btn {
@@ -120,6 +121,7 @@
 .sidevar ul li a:hover {
     background-color: #ffff;
     color: #000000;
+    transition: background-color 0.3s ease;
 }
 
 .sidevar ul li a i {
@@ -128,7 +130,8 @@
     height: 50px;
     border-radius: 12px;
     line-height: 50px;
-    font-size: 1.5rem; /* Aumenta el tamaño de los íconos */
+    font-size: 1.5rem;
+    /* Aumenta el tamaño de los íconos */
 }
 
 .sidevar .nav-item {
@@ -154,9 +157,10 @@
     transition: opacity 0.3s ease;
 }
 
+/* 
 .sidevar ul li:hover .tooltip {
     opacity: 1;
-}
+} */
 
 .sidevar.active ul li .tooltip {
     display: none;
@@ -172,7 +176,6 @@
     background-color: white;
 }
 
-
 .main-content {
     position: relative;
     background-color: white;
@@ -182,5 +185,113 @@
     transition: all 0.5s ease;
     width: calc(100% - 80px);
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
+.main-content .container h1 {
+    margin-left: 40px;
+}
+
+.main-content .formulario {
+    flex: 1;
+    /* Permite que el formulario ocupe todo el espacio restante */
+    width: 700px;
+    font-size: 25px;
+}
+
+.main-content .formulario #cursoForm {
+    display: flex;
+    margin: 40px 40px 0;
+}
+
+.main-content .formulario .curso {
+    padding-right: 40px
+}
+
+.main-content .formulario #cursoForm #curso {
+    padding: 10px;
+    font-size: 15px;
+    margin: 0 10px 0 0px;
+    display: flex;
+    width: 400px;
+}
+
+.main-content .formulario #cursoForm #seccion {
+    padding: 10px;
+    font-size: 15px;
+    margin: 0 10px 0 0px;
+    display: flex;
+    width: 195px;
+}
+
+.main-content .formulario #seleccion {
+    background-color: #d3d3d34d;
+    /* Color de fondo gris */
+    border: 1px solid #a9a9a9;
+    /* Borde de la caja */
+    padding: 10px;
+    /* Espacio interno dentro de la caja */
+    border-radius: 2px;
+    /* Bordes redondeados (opcional) */
+    width: 92%;
+    /* Ajusta el ancho según tus necesidades */
+    margin: 40px;
+    /* Centra el div horizontalmente */
+    font-size: 15px;
+}
+
+.main-content .footer {
+    display: flex;
+    justify-content: flex-start;
+    /* Alinea los elementos a la izquierda */
+    align-items: center;
+    padding: 10px 0;
+    /* Espaciado interno del footer */
+    margin: 20px 40px 50px;
+    position: fixed;
+    /* Fija el footer en una posición */
+    bottom: 0;
+    /* Alinea el footer a la base de la página */
+    width: 100%;
+    /* Asegura que el footer cubra todo el ancho de la página */
+    background-color: #fff;
+    /* Fondo del footer para diferenciarlo del contenido */
+}
+
+.main-content .footer .notas {
+    margin-left: 0;
+    /* Elimina cualquier margen izquierdo */
+    margin-right: 10px;
+    /* Ajusta el margen derecho si es necesario */
+}
+
+.main-content .footer .asistencia {
+    margin: 0 10px;
+    /* Ajusta el margen según sea necesario */
+}
+
+.main-content .footer button {
+    font-size: 20px;
+    /* Ajusta el tamaño del texto del botón */
+    padding: 10px 20px;
+    /* Ajusta el espaciado interno del botón */
+    background-color: #f8ab7c;
+    /* Color de fondo del botón */
+    color: white;
+    /* Color del texto del botón */
+    border: none;
+    /* Sin borde */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease;
+    /* Transición suave para el cambio de fondo */
+}
+
+.main-content .footer button:hover {
+    background-color: #fa8b4b;
+    /* Color de fondo al pasar el ratón */
+}
