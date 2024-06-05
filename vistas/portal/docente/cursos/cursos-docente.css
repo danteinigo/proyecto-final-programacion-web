@@ -229,15 +229,14 @@
 .main-content .formulario #seleccion {
     background-color: #d3d3d34d;
     /* Color de fondo gris */
-    border: 1px solid #a9a9a9;
-    /* Borde de la caja */
+    
     padding: 10px;
     /* Espacio interno dentro de la caja */
     border-radius: 2px;
     /* Bordes redondeados (opcional) */
     width: 92%;
     /* Ajusta el ancho según tus necesidades */
-    margin: 40px;
+    margin: 20px 0 0 40px;
     /* Centra el div horizontalmente */
     font-size: 15px;
 }
