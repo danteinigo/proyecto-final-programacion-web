@@ -91,7 +91,6 @@ body {
     /*max-width: 50%;  Ajusta el tamaño máximo de la imagen */
     /*height: auto;  Para mantener la proporción de la imagen */
     height: 600px;
-    float: right;
 }
 
 footer{
