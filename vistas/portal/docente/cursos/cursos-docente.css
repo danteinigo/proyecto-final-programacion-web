@@ -177,17 +177,12 @@
 }
 
 .main-content {
-    position: relative;
+    position: absolute;
     background-color: white;
-    min-height: 100vh;
     top: 0;
     left: 80px;
     transition: all 0.5s ease;
-    width: calc(100% - 80px);
     padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
 }
 
 .main-content .container h1 {
@@ -293,4 +288,10 @@
 .main-content .footer button:hover {
     background-color: #fa8b4b;
     /* Color de fondo al pasar el ratón */
+}
+
+#docente {
+    width: 40%;
+    float: right;
+    margin-top: 150px;
 }

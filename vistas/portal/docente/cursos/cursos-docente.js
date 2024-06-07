@@ -45,6 +45,9 @@ document.getElementById('curso').addEventListener('change', function () {
 
     // Mostrar las secciones correspondientes al curso seleccionado
     switch (curso) {
+        case 'curso0':
+            seccionSelect.add(new Option("", "seccion0"));
+            break;
         case 'curso1':
             seccionSelect.add(new Option("I12345", "seccion1"));
             seccionSelect.add(new Option("I54321", "seccion2"));
