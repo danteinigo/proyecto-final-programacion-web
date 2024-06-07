@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function actualizarSeleccion() {
         var cursoSeleccionado = cursoSelect.options[cursoSelect.selectedIndex].text;
-        var seccionSeleccionada = seccionSelect.options[seccionSelect.selectedIndex].text;
+        var seccionSeleccionada = seccionSelect.selectedIndex !== -1 ? seccionSelect.options[seccionSelect.selectedIndex].text : '';
         seleccionDiv.textContent = cursoSeleccionado + ' - ' + seccionSeleccionada;
     }
 

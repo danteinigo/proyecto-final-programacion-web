@@ -26,7 +26,6 @@
 
 .sidevar.active~.main-content {
     left: 250px;
-    width: calc(100% - 250px);
 }
 
 .sidevar.active {
