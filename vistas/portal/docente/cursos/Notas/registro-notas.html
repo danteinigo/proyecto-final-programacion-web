@@ -9,6 +9,73 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="registro-notas.css">
     <script type="module" src="registro-notas.js"></script>
+
+    <script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
+
+    <style>
+        /* Estilo para el contenedor de la tabla con scroll */
+        .table-container {
+            max-height: 400px;
+            /* Altura máxima del contenedor */
+            overflow-y: auto;
+            /* Habilitar scroll vertical si es necesario */
+            position: relative;
+            /* Posición relativa para que los elementos internos puedan tener posición absoluta */
+            margin: 40px 0 0 40px;
+        }
+
+        #notasTable {
+            /* Tu estilo actual para la tabla */
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #notasTable th,
+        #notasTable td {
+            /* Tu estilo actual para las celdas de la tabla */
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #notasTable th {
+            /* Tu estilo actual para las cabeceras de la tabla */
+            background-color: #f2f2f2;
+        }
+
+        /* Estilo para el botón de exportar */
+        #btnExportar {
+            background-color: #f8ab7c;
+            /* Color de fondo */
+            border: none;
+            /* Sin borde */
+            color: white;
+            /* Color del texto */
+            padding: 10px 20px;
+            /* Espaciado interno */
+            text-align: center;
+            /* Alineación del texto */
+            text-decoration: none;
+            /* Sin decoración de texto */
+            display: inline-block;
+            /* Mostrar como elemento en línea */
+            font-size: 16px;
+            /* Tamaño de fuente */
+            margin: 40px 0 0 40px;
+            /* Margen superior e inferior */
+            cursor: pointer;
+            /* Cambio de cursor al pasar el ratón */
+            border-radius: 5px;
+            /* Borde redondeado */
+        }
+
+        /* Cambio de color al pasar el ratón sobre el botón */
+        #btnExportar:hover {
+            background-color: #fa8b4b;
+        }
+    </style>
 </head>
 
 <body>
@@ -53,8 +120,127 @@
     <div class="main-content">
         <div class="container">
             <h1>REGISTRO DE NOTAS</h1>
+            <!-- Botón de exportar a Excel -->
+            <button id="btnExportar">Exportar a Excel</button>
+
+            <div class="table-container">
+                <!-- Tabla de notas -->
+                <table id="notasTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>EP</th>
+                            <th>EF</th>
+                            <th>TA</th>
+                            <th>Promedio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las filas se agregarán automáticamente con JavaScript -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tableBody = document.querySelector('#notasTable tbody');
+            var data = [
+                "García Pérez, María Isabel",
+                "Martínez López, Juan Carlos",
+                "Hernández Rodríguez, Ana Sofía",
+                "López García, Luis Miguel",
+                "González Martínez, Andrea Fernanda",
+                "Díaz Hernández, Jorge Alejandro",
+                "Pérez Sánchez, Laura Valentina",
+                "Rodríguez González, Carlos Eduardo",
+                "Sánchez Martínez, Sofía Alejandra",
+                "Ramírez Hernández, José Luis",
+                "Flores Rodríguez, Daniela Fernanda",
+                "Torres López, Juan Manuel",
+                "Vázquez Ramírez, María José",
+                "Gómez Pérez, Ricardo Arturo",
+                "Mendoza Sánchez, Karla Patricia",
+                "Jiménez González, Andrés Felipe",
+                "Ruiz Martínez, Paulina Gabriela",
+                "Castillo Díaz, Fernando Alberto",
+                "Chávez Vázquez, Ana Karen",
+                "Núñez Gómez, Sebastián Alejandro",
+                "Delgado Pérez, Andrea Paola",
+                "Vargas Rodríguez, José Antonio",
+                "Molina Sánchez, Brenda Guadalupe",
+                "Ramos Torres, Juan Pablo",
+                "Cruz Jiménez, María Fernanda",
+                "Ortega Ruiz, Miguel Ángel",
+                "Salazar García, Alejandra",
+                "Mejía Díaz, Roberto Carlos",
+                "Navarro Martínez, Natalia Andrea",
+                "Herrera López, Gabriel Alejandro",
+                "Acosta Vázquez, Ana Laura",
+                "Santos Pérez, Eduardo José",
+                "Álvarez García, Valeria",
+                "Ríos Hernández, Luis Fernando",
+                "Pacheco Sánchez, Ana Sofía",
+                "Campos Rodríguez, David Alejandro",
+                "Morales Vargas, Andrea Nicole",
+                "Guerrero Reyes, Juan José",
+                "Fuentes Martínez, Mariana",
+                "Rosales López, Francisco Javier"
+            ];
+
+            // Función para calcular el promedio
+            function calcularPromedio(row) {
+                var ep = parseInt(row.cells[2].textContent) || 0;
+                var ef = parseInt(row.cells[3].textContent) || 0;
+                var ta = parseInt(row.cells[4].textContent) || 0;
+
+                // Calcular el promedio ponderado
+                var promedio = (ep * 0.3 + ef * 0.5 + ta * 0.2);
+                row.cells[5].textContent = promedio.toFixed(2); // Mostrar el promedio con dos decimales
+            }
+
+            // Agregar filas a la tabla
+            for (var i = 0; i < data.length; i++) {
+                var row = tableBody.insertRow();
+                row.insertCell().textContent = (i + 1); // Enumerar las filas
+                row.insertCell().textContent = data[i];
+                row.insertCell().contentEditable = true; // Permitir la edición de las celdas
+                row.insertCell().contentEditable = true;
+                row.insertCell().contentEditable = true;
+                row.insertCell().textContent = ""; // Celda de promedio, se llenará automáticamente después de editar
+
+                // Evento para calcular el promedio cuando se modifiquen las celdas de EP, EF y TA
+                row.cells[2].addEventListener('input', function () {
+                    calcularPromedio(this.parentNode);
+                });
+                row.cells[3].addEventListener('input', function () {
+                    calcularPromedio(this.parentNode);
+                });
+                row.cells[4].addEventListener('input', function () {
+                    calcularPromedio(this.parentNode);
+                });
+            }
+        });
+
+        // Función para exportar a Excel
+        const $btnExportar = document.querySelector("#btnExportar");
+        const $tabla = document.querySelector("#notasTable");
+
+        $btnExportar.addEventListener("click", function () {
+            let tableExport = new TableExport($tabla, {
+                exportButtons: false, // No queremos botones
+                filename: "Reporte_de_notas", // Nombre del archivo de Excel
+                sheetname: "Notas", // Título de la hoja
+            });
+            let datos = tableExport.getExportData();
+            let preferenciasDocumento = datos.notasTable.xlsx;
+            tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+        });
+
+
+    </script>
 </body>
 
 </html>
