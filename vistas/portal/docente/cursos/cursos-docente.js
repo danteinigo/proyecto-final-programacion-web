@@ -82,5 +82,5 @@ document.getElementById('curso').addEventListener('change', function () {
 
 // JavaScript para redireccionar al hacer clic en el botón "REGISTRO DE NOTAS"
 document.querySelector('.notas button').addEventListener('click', function () {
-    window.location.href = './notas/registro-notas.html';
+    window.location.href = 'Notas/registro-notas.html';
 });
