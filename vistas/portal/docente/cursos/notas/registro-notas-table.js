@@ -43,6 +43,35 @@ document.addEventListener('DOMContentLoaded', function () {
         "Rosales López, Francisco Javier"
     ];
 
+    var dateRanges = {
+        EP: { start: new Date('2024-06-21'), end: new Date('2024-07-01') },
+        EF: { start: new Date('2024-08-19'), end: new Date('2024-08-24') },
+        TA: { start: new Date('2024-08-19'), end: new Date('2024-08-24') }
+    };
+
+    function isDateInRange(date, range) {
+        return date >= range.start && date <= range.end;
+    }
+
+    function validarFechaEP() {
+        var today = new Date();
+        return isDateInRange(today, dateRanges.EP);
+    }
+
+    function validarFechaEF() {
+        var today = new Date();
+        return isDateInRange(today, dateRanges.EF);
+    }
+
+    function validarFechaTA() {
+        var today = new Date();
+        return isDateInRange(today, dateRanges.TA);
+    }
+
+    function validarRango(value) {
+        return value >= 0 && value <= 20;
+    }
+
     function calcularPromedio(row) {
         var ep = parseInt(row.cells[2].textContent) || 0;
         var ef = parseInt(row.cells[3].textContent) || 0;
@@ -56,6 +85,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function validarYCalcular(event, validarFecha) {
+        var cell = event.target;
+        var value = parseInt(cell.textContent);
+
+        if (!validarFecha()) {
+            alert("No se puede ingresar notas fuera del rango de fechas permitido.");
+            cell.textContent = "";
+        } else if (!validarRango(value)) {
+            alert("Las notas deben estar entre 0 y 20.");
+            cell.textContent = "";
+        } else {
+            calcularPromedio(cell.parentNode);
+        }
+    }
+
     for (var i = 0; i < data.length; i++) {
         var row = tableBody.insertRow();
         row.insertCell().textContent = (i + 1);
@@ -65,33 +109,20 @@ document.addEventListener('DOMContentLoaded', function () {
         row.insertCell().contentEditable = true;
         row.insertCell().textContent = "";
 
-        row.cells[2].addEventListener('input', function () {
-            calcularPromedio(this.parentNode);
+        row.cells[2].addEventListener('input', function (event) {
+            validarYCalcular(event, validarFechaEP);
         });
-        row.cells[3].addEventListener('input', function () {
-            calcularPromedio(this.parentNode);
+
+        row.cells[3].addEventListener('input', function (event) {
+            validarYCalcular(event, validarFechaEF);
         });
-        row.cells[4].addEventListener('input', function () {
-            calcularPromedio(this.parentNode);
+
+        row.cells[4].addEventListener('input', function (event) {
+            validarYCalcular(event, validarFechaTA);
         });
     }
 });
 
-const $btnExportar = document.querySelector("#btnExportar");
-const $btnIncidencia = document.querySelector("#btnIncidencia");
-const $tabla = document.querySelector("#notasTable");
-
-$btnExportar.addEventListener("click", function () {
-    let tableExport = new TableExport($tabla, {
-        exportButtons: false,
-        filename: "Reporte_de_notas",
-        sheetname: "Notas",
-    });
-    let datos = tableExport.getExportData();
-    let preferenciasDocumento = datos.notasTable.xlsx;
-    tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
-});
-
 $btnIncidencia.addEventListener("click", function () {
-    window.location.href = "incidencia-nota.html"; 
+    window.location.href = "incidencia-nota.html";
 });
