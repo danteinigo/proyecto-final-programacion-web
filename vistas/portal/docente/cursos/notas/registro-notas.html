@@ -15,64 +15,48 @@
     <script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
 
     <style>
-        /* Estilo para el contenedor de la tabla con scroll */
         .table-container {
             max-height: 400px;
-            /* Altura máxima del contenedor */
             overflow-y: auto;
-            /* Habilitar scroll vertical si es necesario */
             position: relative;
-            /* Posición relativa para que los elementos internos puedan tener posición absoluta */
             margin: 40px 0 0 40px;
         }
 
         #notasTable {
-            /* Tu estilo actual para la tabla */
             border-collapse: collapse;
             width: 100%;
         }
 
         #notasTable th,
         #notasTable td {
-            /* Tu estilo actual para las celdas de la tabla */
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
 
         #notasTable th {
-            /* Tu estilo actual para las cabeceras de la tabla */
             background-color: #f2f2f2;
         }
 
-        /* Estilo para el botón de exportar */
-        #btnExportar {
-            background-color: #f8ab7c;
-            /* Color de fondo */
-            border: none;
-            /* Sin borde */
-            color: white;
-            /* Color del texto */
-            padding: 10px 20px;
-            /* Espaciado interno */
-            text-align: center;
-            /* Alineación del texto */
-            text-decoration: none;
-            /* Sin decoración de texto */
-            display: inline-block;
-            /* Mostrar como elemento en línea */
-            font-size: 16px;
-            /* Tamaño de fuente */
+        .button-container {
             margin: 40px 0 0 40px;
-            /* Margen superior e inferior */
-            cursor: pointer;
-            /* Cambio de cursor al pasar el ratón */
-            border-radius: 5px;
-            /* Borde redondeado */
         }
 
-        /* Cambio de color al pasar el ratón sobre el botón */
-        #btnExportar:hover {
+        .button-container button {
+            background-color: #f8ab7c;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-right: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button-container button:hover {
             background-color: #fa8b4b;
         }
     </style>
@@ -82,7 +66,6 @@
     <div class="sidevar">
         <div class="top">
             <div class="logo">
-                <!-- <i class="bx bxl-codepen"></i> -->
                 <img src="../../../../../img/universidad/Escudo_UNFV.png" alt="">
                 <span></span>
             </div>
@@ -113,18 +96,18 @@
                     <span class="nav-item">Logout</span>
                 </a>
             </li>
-
         </ul>
     </div>
 
     <div class="main-content">
         <div class="container">
             <h1>REGISTRO DE NOTAS</h1>
-            <!-- Botón de exportar a Excel -->
-            <button id="btnExportar">Exportar a Excel</button>
-
+            <div class="button-container">
+                <button id="btnExportar">Exportar a Excel</button>
+                <button id="btnIncidencia">Incidencia de nota</button>
+                <button id="btnGuardar">Guardar</button>
+            </div>
             <div class="table-container">
-                <!-- Tabla de notas -->
                 <table id="notasTable">
                     <thead>
                         <tr>
@@ -133,11 +116,10 @@
                             <th>EP</th>
                             <th>EF</th>
                             <th>TA</th>
-                            <th>Promedio</th>
+                            <th>Promedio Final</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Las filas se agregarán automáticamente con JavaScript -->
                     </tbody>
                 </table>
             </div>
@@ -190,28 +172,28 @@
                 "Rosales López, Francisco Javier"
             ];
 
-            // Función para calcular el promedio
             function calcularPromedio(row) {
                 var ep = parseInt(row.cells[2].textContent) || 0;
                 var ef = parseInt(row.cells[3].textContent) || 0;
                 var ta = parseInt(row.cells[4].textContent) || 0;
 
-                // Calcular el promedio ponderado
-                var promedio = (ep * 0.3 + ef * 0.5 + ta * 0.2);
-                row.cells[5].textContent = promedio.toFixed(2); // Mostrar el promedio con dos decimales
+                if (!isNaN(ep) && !isNaN(ef) && !isNaN(ta) && ep > 0 && ef > 0 && ta > 0) {
+                    var promedio = (ep * 0.3 + ef * 0.5 + ta * 0.2);
+                    row.cells[5].textContent = promedio.toFixed(2);
+                } else {
+                    row.cells[5].textContent = ""; // Vaciar la celda de promedio si no todos los campos están completos
+                }
             }
 
-            // Agregar filas a la tabla
             for (var i = 0; i < data.length; i++) {
                 var row = tableBody.insertRow();
-                row.insertCell().textContent = (i + 1); // Enumerar las filas
+                row.insertCell().textContent = (i + 1);
                 row.insertCell().textContent = data[i];
-                row.insertCell().contentEditable = true; // Permitir la edición de las celdas
                 row.insertCell().contentEditable = true;
                 row.insertCell().contentEditable = true;
-                row.insertCell().textContent = ""; // Celda de promedio, se llenará automáticamente después de editar
+                row.insertCell().contentEditable = true;
+                row.insertCell().textContent = "";
 
-                // Evento para calcular el promedio cuando se modifiquen las celdas de EP, EF y TA
                 row.cells[2].addEventListener('input', function () {
                     calcularPromedio(this.parentNode);
                 });
@@ -224,22 +206,24 @@
             }
         });
 
-        // Función para exportar a Excel
         const $btnExportar = document.querySelector("#btnExportar");
+        const $btnIncidencia = document.querySelector("#btnIncidencia");
         const $tabla = document.querySelector("#notasTable");
 
         $btnExportar.addEventListener("click", function () {
             let tableExport = new TableExport($tabla, {
-                exportButtons: false, // No queremos botones
-                filename: "Reporte_de_notas", // Nombre del archivo de Excel
-                sheetname: "Notas", // Título de la hoja
+                exportButtons: false,
+                filename: "Reporte_de_notas",
+                sheetname: "Notas",
             });
             let datos = tableExport.getExportData();
             let preferenciasDocumento = datos.notasTable.xlsx;
             tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
         });
 
-
+        $btnIncidencia.addEventListener("click", function () {
+            window.location.href = "incidencia-nota.html"; // Cambia "incidencia-nota.html" por la URL a la que quieres redirigir
+        });
     </script>
 </body>
 
