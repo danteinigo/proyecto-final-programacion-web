@@ -93,5 +93,5 @@ $btnExportar.addEventListener("click", function () {
 });
 
 $btnIncidencia.addEventListener("click", function () {
-    window.location.href = "incidencia-nota.html"; // Cambia "incidencia-nota.html" por la URL a la que quieres redirigir
+    window.location.href = "incidencia-nota.html"; 
 });
